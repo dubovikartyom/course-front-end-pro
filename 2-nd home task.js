@@ -27,8 +27,8 @@ const strChecked = "a123";
 let arrWords = strChecked.split("");
 console.log(arrWords);
 
-var typeStrData = [];
-
+let typeStrData = [];
+/* example cycle for
 for(let i2 = 0; i2 < arrWords.length; i2++){
     var re = /[0-9]/;
     if(re.test(arrWords[i2])){
@@ -37,6 +37,19 @@ for(let i2 = 0; i2 < arrWords.length; i2++){
         typeStrData.push("String");
     }
 };
+*/
+//example cycle while
+let i2 = 0;
+while(i2 < arrWords.length){
+    var re = /[0-9]/;
+    if(re.test(arrWords[i2])){
+        typeStrData.push("Number");
+    }else{
+        typeStrData.push("String");
+    }
+    i2++
+}
+
 console.log(typeStrData);
 const strInfoType = typeStrData.join(", ");
 console.log(strInfoType);
