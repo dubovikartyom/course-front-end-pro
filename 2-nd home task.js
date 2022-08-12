@@ -53,3 +53,30 @@ while(i2 < arrWords.length){
 console.log(typeStrData);
 const strInfoType = typeStrData.join(", ");
 console.log(strInfoType);
+
+//написать цикл который будет на каждое число от 13 и до 3 выводить "odd", "even" в зависимости четное или нет число в итерируемой переменной
+const arrNumbers = [4, 6, 10, 12, 13];
+
+//example cycle for
+for(let i3 = 0; i3 < arrNumbers.length; i3++){
+    if(arrNumbers[i3] % 2){
+        console.log(arrNumbers[i3]);
+        console.log("odd");
+    }else {
+        console.log(arrNumbers[i3]);
+        console.log("even");
+    }
+}
+
+//example cycle while
+let i3=0;
+while(i3 < arrNumbers.length){
+    if(arrNumbers[i3] % 2){
+        console.log(arrNumbers[i3]);
+        console.log("odd");
+    }else {
+        console.log(arrNumbers[i3]);
+        console.log("even");
+    }
+    i3++
+}
