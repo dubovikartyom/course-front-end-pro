@@ -10,8 +10,8 @@ const usersArray = [
             {
                 name: "Kate",
                 balance: '0$',
-            },
-        ],
+            }
+        ]
     },
     {
         name: "Isaac",
@@ -24,8 +24,8 @@ const usersArray = [
             {
                 name: "Robert",
                 balance: '150000$',
-            },
-        ],
+            }
+        ]
     },
     {
         name: "Jane",
@@ -42,14 +42,14 @@ const usersArray = [
             {
                 name: "Bob",
                 balance: '300$',
-            },
-        ],
+            }
+        ]
     },
     {
         name: "Russell",
         balance: '100$',
         friends: [],
-    },
+    }
 ];
 
 //1) Вывести имя самого богатого пользователя
@@ -122,7 +122,7 @@ usersArray.splice(indexAddElem +1, 0, {"name": "Harry", "balance": '0$', "friend
 console.log(usersArray);
 
 //7) Добавить пользователя Conor в конец массива
-usersArray.push({"name": "Conor", "balance": '5000$', "friends": []});
+usersArray.push({"name": "Conor", "balance": '10000$', "friends": []});
 
 console.log(usersArray);
 
@@ -173,3 +173,42 @@ const mostRichUser = arrTemp.reduce((prev, item) => {
 //show name most rich user
 console.log(mostRichUser.name)
 
+//11) Найти пользователей с общими друзьями
+
+let generalFriends = usersArray.map(elem => elem.friends.map(el => el.name)).flat().filter((element, index, array) => array.indexOf(element) == index).map(name => {
+    let arr_own = [];
+    for (i in usersArray) {
+        if (usersArray[i].friends.map(e => e.name).includes(name)) {
+            arr_own.push(usersArray[i].name);
+        }
+    }
+    let obj = {
+        "name": name,
+        "owners": arr_own
+    }
+    return obj;
+}).filter(last_key => last_key.owners.length > 1);
+
+console.log(generalFriends);
+
+//12) Вывести одинаковы ли массивы
+const arr1 = [10, 'a', '5', 5, 1]; 
+const arr2 = [10, 'a', 5, 5, 1];
+
+let comparisonResult = [];
+
+arr1.forEach((x, index) => {
+    x === arr2[index] ? comparisonResult.push(true) : comparisonResult.push(false);
+    console.log(comparisonResult);
+});
+comparisonResult.indexOf(false) !== -1 ? console.log("Массивы не одинаковые") : console.log("Массивы одинаковые");
+
+//13) вывести true или false в зависимости является ли строка палиндромом "искать такси", "привет мир"
+
+console.log(palindrome("искать такси"));
+console.log(palindrome("привет мир"))
+
+function palindrome(str) {
+    str = str.replace(/ /g,'');
+    return str.split('').reverse().join('') == str;
+  };
