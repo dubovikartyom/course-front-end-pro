@@ -78,7 +78,7 @@ console.log(mostWeightCharacter.name);
 //4.Вывести фильмы в которых присутствовали все персонажи массива;
 let all_films = starWarCharacters.map(elem => elem.films).flat().filter((element, index, array) => array.indexOf(element) == index).filter(el => {
     let curfilms = true;
-    for (i in starWarCharacters) {
+    for (let i in starWarCharacters) {
         if (!starWarCharacters[i].films.includes(el)) {
             curfilms = false
             break;
