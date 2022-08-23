@@ -44,7 +44,7 @@ console.log(checkLetter('Hello world'));
 
 
 //4. создавать объект в зависимости от переданного вида createUser('admin', Bob') => {role: 'admin', name: 'Bob }, createUser('user', Alice') => {role: 'user', name: 'Alice }
-function getInfoUser(role, name){
+function getInfoUser(role, name) {
     let userInfo;
     return userInfo = {
         "role": role,
@@ -55,13 +55,80 @@ console.log(getInfoUser('admin', 'Bob'));
 
 
 //5. должна принимать 'aabbbccccd' и возвращать '2a3b4c1d'
-function decoder(){
-    
+function decoder(str) {
+    let decoderResult = [];
+
+    console.log(arrLetters);
+
+    let amountSame = 1;
+
+    str.split('').reduce((accum, item, index, array) => {
+        accum = array[index - 1];
+        console.log(accum);
+        console.log(item);
+        if (accum) {
+            if (accum === item) {
+                amountSame++;
+            } else {
+                decoderResult.push(amountSame);
+                decoderResult.push(accum);
+                amountSame = 1;
+            }
+
+            if (array.length === index + 1) {
+                decoderResult.push(amountSame);
+                decoderResult.push(item);
+            }
+        }
+    });
+
+    return decoderResult.join('');
 };
+console.log(decoder('aabbbccccd'));
 
 
 //6. вернуть строкой количество четных и нечетных чисел [1,2,3,4,NaN, 0, 5, 10]
+function getAnalysString(arr) {
+    let even = 0;
+    let odd = 0;
+    arr.forEach(x => {
+        Number(x) % 2 ? even += 1 : odd += 1;
+    });
+    let resultText = `Количество четных чисел: ${even}, количество нечетных чисел: ${odd}`;
+    return resultText;
+};
+console.log(getAnalysString([1, 2, 3, 4, NaN, 0, 5, 10]));
+
 //7. конвертация валют переданное кол-во гривен в переданную валюту - convert('US', 1000) - вернуть число 27.32
+
+function convertCurrency(currency, amount) {
+    const valueCurrency = {
+        "EUR": 36.56, 
+        "USD": 36.56,
+        "PLN": 7.67
+    };
+    return valueCurrency[currency] ? amount/valueCurrency[currency] : "Данная валюта не поддерживается";
+};
+
+console.log(convertCurrency("USD", 1000));
+
 //8. вернуть строку с пробелами между каждым символом 'hello world' => 'h e l l o w o r l d'
+function addSpace(str){
+    return str.split("").filter(x => x !== ' ').join(' ');
+};
+console.log(addSpace('hello world'));
+
+
 //9. вернуть количество часов принимая количество лет getSeconds('5 years') => 43800
+function getAmountHours(amountYears){
+    return (Number(amountYears.replace(/\D+/g,"")) * 365)*24;
+};
+
+console.log(getAmountHours('5 years'));
+
+
 //10. обрезать слишком длинную строку trim('hello world', 3) => 'hel...'
+function cutString(str, amountLetters){
+    return `${str.slice(0, amountLetters)}...`;
+};
+console.log(cutString('hello world', 3))
