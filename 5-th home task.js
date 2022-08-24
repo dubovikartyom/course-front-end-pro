@@ -58,8 +58,6 @@ console.log(getInfoUser('admin', 'Bob'));
 function decoder(str) {
     let decoderResult = [];
 
-    console.log(arrLetters);
-
     let amountSame = 1;
 
     str.split('').reduce((accum, item, index, array) => {
