@@ -89,7 +89,7 @@ for (let i = 0; i < 5; i++) {
 function counter() {
     let count = 0;
 
-    return function () {
+    return function increase () {
         let accum = count;
         return [accum, ++count]
     };
