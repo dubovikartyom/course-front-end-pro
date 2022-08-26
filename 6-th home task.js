@@ -88,11 +88,12 @@ for (let i = 0; i < 5; i++) {
 
 function counter() {
     let count = 0;
-  
-    return function() {
-      return count++;
-    };
-  }
 
-  let exampleCounter = counter();
-  console.log(exampleCounter(),exampleCounter(),exampleCounter(),exampleCounter());
+    return function () {
+        let accum = count;
+        return [accum, ++count]
+    };
+}
+
+let exampleCounter = counter();
+console.log(exampleCounter(), exampleCounter(), exampleCounter(), exampleCounter());
