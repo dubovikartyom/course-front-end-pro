@@ -13,7 +13,7 @@ let user = {
 
 
 //1-st option
-console.log(user?.cart?.price)
+user?.cart?.price ? console.log (user.cart[0].price) : console.log("Упс, что-то пошло не так");
 
 //2-nd option
 try {
