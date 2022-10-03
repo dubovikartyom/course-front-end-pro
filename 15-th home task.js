@@ -4,16 +4,20 @@
 
  (brushTeeth.then(() => dosmthelse.then(())*/
 
- let mySchedule = new Promise( function(resolve, reject){
-    setTimeout(() => resolve(['09:00', 'breakfast']), 10000);
-}).then(function(result){
-    console.log(result);
-    result.push(['09:30', 'physical jerks']);
-    return result;
-}).then(function(result){
-    console.log(result);
-    result.push(['11:00', 'start working']);
-    return result;
-}).then(function(result){
-    console.log(result);
+ const morning = new Promise(function(resolve){
+    resolve("09:00 brush teeth");
+})
+
+const morningWalk = morning.then(function(value){
+    // возвращаем новое значение
+    return value + ", 09:30 walk with dog";
 });
+const goWork = morningWalk.then(function(value){
+    // возвращаем новое значение
+    return value + ", 10:00 start work";
+});
+goWork.then(function(finalValue){
+    // получаем финальное значение
+    console.log(finalValue);
+});
+
