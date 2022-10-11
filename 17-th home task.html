@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .counter {
+            margin: 20px auto;
+            border: 1px solid black;
+            border-radius: 3px;
+            max-width: fit-content;
+            box-shadow: 5px 5px 2px lightgrey;
+        }
+
+        .counter-screen{
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div>Важная информация</div>
+    <div>Неважная информация</div>
+    <ul>
+        <li data-id="woman">Jane</li>
+        <li data-id="man">Bob</li>
+        <li data-id="woman">Kate</li>
+        <li data-id="woman">Mary</li>
+    </ul>
+
+    <!--1.Создать страницу где будет отображен счетчик и кнопки инкремента и декремента этого счетчика.-->
+    <div class="counter">
+        <div class="counter-screen">0</div>
+        <div class="counter-button_group">
+            <button class="decr">Decrease</button>
+            <button class="incr">Increase</button>
+        </div>
+    </div>
+    <script>
+        //2.Получить несколькими способами доступ к элементу с Важной информацией и всем элементам с женскими именами.
+
+        //2.1
+
+        //к элементу "Важная информация" мы можем обратиться как к первому дочернему body
+        console.log(document.body.firstElementChild)
+
+        //поиск по имени тега + условие содержимого текста
+        for (const iterator of document.getElementsByTagName('div')) {
+            if(iterator.innerText === "Важная информация"){
+                console.log(iterator)
+            }
+        }
+        
+        //так же перебрав все элементы div с условием необходимого нам текстового содержимого
+        for (const iterator of document.querySelectorAll('div')) {
+            if(iterator.innerText === "Важная информация"){
+                console.log(iterator)
+            }
+        }
+
+        //либо перебрав все дочерние элементы body и определить необходимый по текстовому содержимому
+        for (const iterator of document.body.children) {
+            if(iterator.innerText === "Важная информация"){
+                console.log(iterator)
+            }
+        }
+        
+        //2.2
+        //к элементам с женскими именами можем получить доступ по дата атрибуту указав его в виде css селектора
+        console.log(document.querySelectorAll('ul > li[data-id = "woman"]'))
+
+        //перебор циклом + проверка соответствия css селектору
+        for (const iterator of document.querySelector('ul').children) {
+            if(iterator.matches('[data-id = "woman"]')){
+                console.log(iterator)
+            }
+        };
+
+
+
+        //скрипт для счетчика
+        const counterButtons = document.querySelectorAll('button');
+        const counterScreen = document.querySelector('.counter-screen');
+
+        counterButtons.forEach(x => {
+            x.addEventListener('click', function(){
+                counterScreen.innerText = x.className === 'decr' ? Number(counterScreen.innerText) - 1 : Number(counterScreen.innerText) + 1;
+            })
+        })
+    </script>
+</body>
+
+</html>
