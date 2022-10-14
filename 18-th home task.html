@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body">
+
+    <script>
+        /*Создать страницу которая через prompt будет получать строку и выводить ее в центр экрана.
+        Строка должна менять свой цвет на случайный каждые 10 секунд и и счезнуть через 30 секунд.*/
+
+        showText();
+
+        async function showText() {
+            const colors = ["red", "green", "blue", "grey", "black", "yellow", "pink"]
+            let text = await prompt("Введите текст", "Какой-то текст");
+            let pageHeight = document.documentElement.clientHeight;
+            let pageWidth = document.documentElement.clientWidth;
+
+            document.querySelector('body').insertAdjacentHTML('afterbegin', `<p id="myText" style="margin:${pageHeight / 2}px ${pageWidth / 2}px; width: max-content;">${text}</p>`);
+
+
+            (function iterate(i) {
+                setTimeout(function () {
+                
+                    if (i < 3) {
+                        myText.style.color = getRandomColor();
+                        console.log(myText.style.color)
+                        iterate(i + 1);
+                    }else{
+                        myText.remove();
+                    }
+                }, 10000);
+            })(0);
+
+            function getRandomColor() {
+                let randomIndex = (Math.random() * (6 - 0) + 0).toFixed();
+                return colors[randomIndex];
+            }
+        }
+    </script>
+    </body>
+
+</html>
