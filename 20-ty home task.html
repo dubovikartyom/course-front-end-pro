@@ -40,10 +40,11 @@
         квадрат который можно перемещать по странице с помощью Drag'n'Drop
         при двойному нажатию на квадрат он будет центрироваться по середине экрана
         */
-
+        let square = document.querySelector('#square');
         //function ddclick
         square.dblclick = function () {
-            console.log('test')
+            console.log('center')
+            square.classList.add('center')
         }
 
         //function drag and drop
