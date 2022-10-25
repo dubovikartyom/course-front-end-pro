@@ -25,8 +25,10 @@
         }
 
         .center {
-            top: calc(50vh - 100px);
-            left: calc(50vw - 100px);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
     </style>
 </head>
@@ -41,22 +43,25 @@
         квадрат который можно перемещать по странице с помощью Drag'n'Drop
         при двойному нажатию на квадрат он будет центрироваться по середине экрана
         */
-        let square = document.querySelector('#square');
+        const square = document.querySelector('#square');
+        const vw = window.innerWidth;
+        const vh = window.innerHeight;
 
         //function ddclick
-        square.addEventListener('dblclick', function (){
+        square.addEventListener('dblclick', function () {
             console.log('center')
-            square.classList.add('center')
+            square.style.top = (vh/2) - square.offsetHeight + 'px';
+            square.style.left = (vw/2) - square.offsetWidth + 'px';
         });
 
 
         //function drag and drop
-        square.addEventListener('mousedown', function(){
+        square.addEventListener('mousedown', function () {
             let shiftX = event.clientX - square.getBoundingClientRect().left;
             let shiftY = event.clientY - square.getBoundingClientRect().top;
 
             square.style.zIndex = 1000;
-            document.body.append(square);
+            //document.body.append(square);
 
             moveAt(event.pageX, event.pageY);
 
@@ -80,9 +85,9 @@
                 square.onmouseup = null;
             };
         })
-        
 
-        square.addEventListener('dragstart', function(){
+
+        square.addEventListener('dragstart', function () {
             return false;
         })
 
