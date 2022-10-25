@@ -61,12 +61,9 @@
             let shiftY = event.clientY - square.getBoundingClientRect().top;
 
             square.style.zIndex = 1000;
-            //document.body.append(square);
 
             moveAt(event.pageX, event.pageY);
 
-            // переносит мяч на координаты (pageX, pageY),
-            // дополнительно учитывая изначальный сдвиг относительно указателя мыши
             function moveAt(pageX, pageY) {
                 square.style.left = pageX - shiftX + 'px';
                 square.style.top = pageY - shiftY + 'px';
@@ -76,10 +73,9 @@
                 moveAt(event.pageX, event.pageY);
             }
 
-            // передвигаем мяч при событии mousemove
             document.addEventListener('mousemove', onMouseMove);
 
-            // отпустить мяч, удалить ненужные обработчики
+
             square.onmouseup = function () {
                 document.removeEventListener('mousemove', onMouseMove);
                 square.onmouseup = null;
