@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <form onsubmit="sendData();return false">
+        <input id="inputText" type="text" value="" />
+        <input class="btn" type="submit" value="Отправить" />
+        <div id="result" oncopy="updateCopy()"></div>
+    </form>
+
+    <script>
+        /*
+        Создать страницу с полем ввода и кнопкой отправить
+        которое будет выводить ниже поля ввода то что "отправил" пользователь.
+        Копирование любого из результатов должно вернуть не просто скопированный текст
+        но и добавить слово "test". Например пользователь ввел "Hello world" и нажал на submit кнопку.
+        Ниже поля появилась запись "Hello word" при копировании записи в буфер обмена 
+        должна попасть строка "test Hello world"
+        */
+
+        //function for saving input data
+        function sendData() {
+            const inputData = inputText.value;
+            result.innerHTML += inputData;
+            inputData.value = null;
+        }
+
+        //function for update copying data
+        function updateCopy(event) {
+            navigator.clipboard.readText()
+                .then(text => {
+                    navigator.clipboard.writeText(`test ${text}`)
+                })
+        };
+
+
+    </script>
+</body>
+
+</html>
