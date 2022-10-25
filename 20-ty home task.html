@@ -21,6 +21,7 @@
             width: 200px;
             height: 200px;
             background-color: green;
+            position: absolute;
         }
 
         .center {
@@ -41,19 +42,19 @@
         при двойному нажатию на квадрат он будет центрироваться по середине экрана
         */
         let square = document.querySelector('#square');
+
         //function ddclick
-        square.dblclick = function () {
+        square.addEventListener('dblclick', function (){
             console.log('center')
             square.classList.add('center')
-        }
+        });
+
 
         //function drag and drop
-        square.onmousedown = function (event) {
-
+        square.addEventListener('mousedown', function(){
             let shiftX = event.clientX - square.getBoundingClientRect().left;
             let shiftY = event.clientY - square.getBoundingClientRect().top;
 
-            square.style.position = 'absolute';
             square.style.zIndex = 1000;
             document.body.append(square);
 
@@ -78,12 +79,12 @@
                 document.removeEventListener('mousemove', onMouseMove);
                 square.onmouseup = null;
             };
+        })
+        
 
-        };
-
-        square.ondragstart = function () {
+        square.addEventListener('dragstart', function(){
             return false;
-        };
+        })
 
 
 
