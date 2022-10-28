@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form name="recordSession" onsubmit="sendData('session');return false">
+        <p>Recording in session storage</p>
+        <input type="text" name="text">
+        <input type="submit" name="submit">
+    </form>
+
+    <form name="recordLocal" onsubmit="sendData('local');return false">
+        <p>Recording in local storage</p>
+        <input type="text" name="text">
+        <input type="submit" name="submit">
+    </form>
+
+    <div class="results" style="display: flex; justify-content: space-around; width: 100vw; padding: 50px;">
+        <div>
+            Results from session storage
+            <div id="results_session"></div>
+        </div>
+        <div>
+            Results from local storage
+            <div id="results_local"></div>
+        </div>
+    </div>
+
+    <script>
+        /*
+        Создать страницу на которой будет две секции для создания записи в sessionStorage и в localStorage.
+        Записи вывести ниже в двух разных колонках, рядом с каждой записью должна быть кнопка удалить эту запись из соответствующего хранилища
+        */
+        const formSession = document.forms.recordSession;
+        const inputSession = formSession.elements.text;
+        const submitSession = formSession.elements.submit;
+
+
+
+        const formLocal = document.forms.recordLocal;
+        const inputLocal = formLocal.elements.text;
+        const submitLocal = formLocal.elements.submit;
+
+
+
+        function sendData(storageType) {
+            if (storageType === 'session') {
+                sessionStorage.setItem('keySession', inputSession.value);
+                results_session.innerHTML = `<span>${inputSession.value}</span><button style="margin-left: 15px" onclick="delSession()">delete</button>`
+                inputSession.value = null;
+
+            } else {
+                localStorage.setItem('keyLocal', inputLocal.value);
+                results_local.innerHTML = `<span>${inputLocal.value}</span><button style="margin-left: 15px" onclick="delLocal()">delete</button>`
+                inputLocal.value = null;
+            }
+        }
+
+        function delLocal() {
+            localStorage.removeItem('keyLocal')
+            results_local.innerHTML = ''
+        }
+
+
+        function delSession() {
+            sessionStorage.removeItem('keySession');
+            results_session.innerHTML = ''
+        }
+    </script>
+</body>
+
+</html>
