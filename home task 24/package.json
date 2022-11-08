@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "node": "^19.0.1",
+    "static": "^2.0.0"
+  }
+}
