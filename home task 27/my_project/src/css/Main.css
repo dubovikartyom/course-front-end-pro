@@ -6,9 +6,66 @@
     justify-content: center;
     padding: 0 20px;
     height: 800px;
+    color: white;
 }
 
-.main img {
-    max-width: 500px;
-    max-height: 500px;
+.card {
+  width: 300px;
+  max-height: 300px;
+  margin: 50px auto 0;
+  color: #4ad2ef;
 }
+
+.card img {
+  width: 300px;
+  height: auto;
+}
+
+.card_item{
+  display: flex;
+  justify-content: space-between;
+  line-height: 20px;
+  border: 2px solid #4ad2ef;
+  overflow: hidden;
+}
+
+.card_item .label{
+  margin-left: 20px;
+  padding: 10px 0;
+}
+
+.card_item .charInfo{
+  margin-right: 20px;
+  padding: 10px 0;
+}
+
+
+  
+  .container {
+    width: 80px;
+    height: 100px;
+    margin: 100px auto;
+    margin-top: calc(65vh / 2 - 50px);
+  }
+  
+  .block {
+    position: relative;
+    box-sizing: border-box;
+    float: left;
+    margin: 0 10px 10px 0;
+    width: 12px;
+    height: 12px;
+    border-radius: 3px;
+    background: #4ad2ef;
+  }
+  
+  .block:nth-child(4n+1) { animation: wave 2s ease .0s infinite; }
+  .block:nth-child(4n+2) { animation: wave 2s ease .2s infinite; }
+  .block:nth-child(4n+3) { animation: wave 2s ease .4s infinite; }
+  .block:nth-child(4n+4) { animation: wave 2s ease .6s infinite; margin-right: 0; }
+  
+  @keyframes wave {
+    0%   { top: 0;     opacity: 1; }
+    50%  { top: 30px;  opacity: .2; }
+    100% { top: 0;     opacity: 1; }
+  }
