@@ -9,36 +9,6 @@
     color: white;
 }
 
-.card {
-  width: 300px;
-  max-height: 300px;
-  margin: 50px auto 0;
-  color: #4ad2ef;
-}
-
-.card img {
-  width: 300px;
-  height: auto;
-}
-
-.card_item{
-  display: flex;
-  justify-content: space-between;
-  line-height: 20px;
-  border: 2px solid #4ad2ef;
-  overflow: hidden;
-}
-
-.card_item .label{
-  margin-left: 20px;
-  padding: 10px 0;
-}
-
-.card_item .charInfo{
-  margin-right: 20px;
-  padding: 10px 0;
-}
-
 
   
   .container {

@@ -1,48 +1,50 @@
-import React from "react";
 import "../css/Main.css";
-//import logo from "../static/logo.svg";
-import axios from "axios";
+import React, { Component } from "react";
+import getList from "../helpers/starWarsAPI.js";
 
-function Main() {
+const productList = JSON.stringify(getList());
 
-  const getList = () => {
-    axios.get("https://swapi.dev/api/people/1/").then((res) => {
-      const character = res.data;
-      console.log(character);
-      const main = document.querySelector(".main");
-      main.innerHTML = `
-      <div class="card">
-      <div class="card_item"><img src="https://www.slashfilm.com/img/gallery/heres-what-the-new-luke-skywalker-looks-like-under-his-digital-mask/l-intro-1644193087.jpg" alt="character" /></div>
-      <div class="card_item"><div class="label">Name:</div><div class="charInfo">${character.name}</div></div>
-      <div class="card_item"><div class="label">Height:</div><div class="charInfo">${character.height}</div></div>
-      <div class="card_item"><div class="label">Hair:</div><div class="charInfo">${character.hair_color}</div></div>
-      </div>
-      `;
-    });
-  };
+export class Main extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      getListproduct: false
+    };
+  }
 
-  return (
-    <div className="main" onLoad={setTimeout(getList(), 1000)}>
-      <div class="container">
-        <div class="block"></div>
-        <div class="block"></div>
-        <div class="block"></div>
-        <div class="block"></div>
-        <div class="block"></div>
-        <div class="block"></div>
-        <div class="block"></div>
-        <div class="block"></div>
-        <div class="block"></div>
-        <div class="block"></div>
-        <div class="block"></div>
-        <div class="block"></div>
-        <div class="block"></div>
-        <div class="block"></div>
-        <div class="block"></div>
-        <div class="block"></div>
-      </div>
-    </div>
-  );
+
+  render() {
+    if (this.state.getListproduct) {
+      return(
+        <div className="main">
+          <div className="card">{JSON.parse(productList).results[0].name}</div>
+        </div>
+      )
+    } else {
+      return (
+        <div className="main" onLoad={setInterval(() => { this.setState({getListproduct:true}) }, 3000)}>
+          <div class="container">
+            <div class="block"></div>
+            <div class="block"></div>
+            <div class="block"></div>
+            <div class="block"></div>
+            <div class="block"></div>
+            <div class="block"></div>
+            <div class="block"></div>
+            <div class="block"></div>
+            <div class="block"></div>
+            <div class="block"></div>
+            <div class="block"></div>
+            <div class="block"></div>
+            <div class="block"></div>
+            <div class="block"></div>
+            <div class="block"></div>
+            <div class="block"></div>
+          </div>
+        </div>
+      );
+    }
+  }
 }
 
 export default Main;
