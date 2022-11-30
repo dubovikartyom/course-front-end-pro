@@ -40,7 +40,7 @@ export class Main extends Component {
       )
     } else {
       return (
-        <div className="main" onLoad={this.componentDidMount()}>
+        <div className="main">
           <div class="container">
             <div class="block"></div>
             <div class="block"></div>
