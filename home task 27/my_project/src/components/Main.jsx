@@ -8,23 +8,24 @@ export class Main extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      productList: null
+      productList: null,
+      orders: null
     };
   }
 
-  getList() {
+  getList = () => {
     axios.get("https://swapi.dev/api/starships/").then((res) => {
       const o_productList = res.data.results;
       this.setState({productList: o_productList});
     });
   }
   
-  componentDidMount() {
+  componentDidMount = () => {
     this.getList()
   }
   
-  handleClick(){
-    console.log("click")
+  handleClick = () => {
+    console.log("click");
   } 
 
 
