@@ -23,6 +23,9 @@ export class Main extends Component {
     this.getList()
   }
   
+  handleClick(){
+    console.log("click")
+  } 
 
 
   render() {
@@ -30,12 +33,12 @@ export class Main extends Component {
     if (this.state.productList != null) {
       return(
         <div className="main with_products">
-          <Card item={this.state.productList[0]}/>
-          <Card item={this.state.productList[1]}/>
-          <Card item={this.state.productList[2]}/>
-          <Card item={this.state.productList[3]}/>
-          <Card item={this.state.productList[4]}/>
-          <Card item={this.state.productList[5]}/>
+          <Card item={this.state.productList[0]} onButtonClick = {this.handleClick}/>
+          <Card item={this.state.productList[1]} onButtonClick = {this.handleClick}/>
+          <Card item={this.state.productList[2]} onButtonClick = {this.handleClick}/>
+          <Card item={this.state.productList[3]} onButtonClick = {this.handleClick}/>
+          <Card item={this.state.productList[4]} onButtonClick = {this.handleClick}/>
+          <Card item={this.state.productList[5]} onButtonClick = {this.handleClick}/>
         </div>
       )
     } else {
