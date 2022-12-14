@@ -1,7 +1,8 @@
 import "../css/Main.css";
 import React, { Component } from "react";
 import axios from "axios";
-import Card from "./common/Card"
+import Card from "./common/Card";
+import Orders from "./Orders";
 
 
 export class Main extends Component {
@@ -9,59 +10,52 @@ export class Main extends Component {
     super(props);
     this.state = {
       productList: null,
-      orders: null
+      choice: []
     };
   }
 
   getList = () => {
     axios.get("https://swapi.dev/api/starships/").then((res) => {
       const o_productList = res.data.results;
-      this.setState({productList: o_productList});
+      this.setState({ productList: o_productList });
     });
-  }
-  
+  };
+
   componentDidMount = () => {
-    this.getList()
-  }
-  
-  handleClick = () => {
-    console.log("click");
-  } 
+    this.getList();
+  };
 
 
   render() {
-
     if (this.state.productList != null) {
-      return(
+      var cardArr = this.state.productList.map((x, index)=> <Card item={x} key={`${index}${x.MGLT}`}/>);
+
+      return (
         <div className="main with_products">
-          <Card item={this.state.productList[0]} onButtonClick = {this.handleClick}/>
-          <Card item={this.state.productList[1]} onButtonClick = {this.handleClick}/>
-          <Card item={this.state.productList[2]} onButtonClick = {this.handleClick}/>
-          <Card item={this.state.productList[3]} onButtonClick = {this.handleClick}/>
-          <Card item={this.state.productList[4]} onButtonClick = {this.handleClick}/>
-          <Card item={this.state.productList[5]} onButtonClick = {this.handleClick}/>
+          <Orders products={this.state.choice}/>
+          {cardArr}
         </div>
-      )
+      );
     } else {
       return (
         <div className="main">
-          <div class="container">
-            <div class="block"></div>
-            <div class="block"></div>
-            <div class="block"></div>
-            <div class="block"></div>
-            <div class="block"></div>
-            <div class="block"></div>
-            <div class="block"></div>
-            <div class="block"></div>
-            <div class="block"></div>
-            <div class="block"></div>
-            <div class="block"></div>
-            <div class="block"></div>
-            <div class="block"></div>
-            <div class="block"></div>
-            <div class="block"></div>
-            <div class="block"></div>
+          <div classname="container">
+            <div classname="block"></div>
+            <div classname="block"></div>
+            <div classname="block"></div>
+            <div classname="block"></div>
+            <div classname="block"></div>
+            <div classname="block"></div>
+            <div classname="block"></div>
+            <div classname="block"></div>
+            <div classname="block"></div>
+            <div classname="block"></div>
+            <div classname="block"></div>
+            <div classname="block"></div>
+            <div classname="block"></div>
+            <div classname="block"></div>
+            <div classname="block"></div>
+            <div classname="block"></div>
           </div>
         </div>
       );

@@ -1,8 +1,10 @@
 import React from 'react'
 import "../../css/common/card.css";
-import Button_for_cards from "./Button_for_cards"
 
-function Card(props, onButtonClick) {
+
+
+
+function Card(props) {
 
   return (
     <div className="card">
@@ -12,7 +14,6 @@ function Card(props, onButtonClick) {
         <div className="card_manufacturer place">Manufacturer: {props.item.manufacturer}</div>
         <div className="card_speed place">Speed: {props.item.max_atmosphering_speed}</div>
         <div className="card_cost place">Cost: {props.item.cost_in_credits}</div>
-        <Button_for_cards onClick = {onButtonClick}/>
     </div>
   )
 }
