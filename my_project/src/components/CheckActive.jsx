@@ -43,6 +43,12 @@ export class CheckActive extends Component {
     }
   };
 
+  componentWillUnmount = () => {
+    window.removeEventListener("mousemove", this.active);
+    window.removeEventListener("keypress", this.active);
+    window.removeEventListener("click", this.active);
+  }
+
   render() {
     if (this.state.active) {
       return this.props.children;
