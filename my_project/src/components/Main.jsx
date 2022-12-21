@@ -4,12 +4,14 @@ import axios from "axios";
 import Orders from "./Orders";
 import Card from "./common/Card";
 
+
 export class Main extends Component {
   constructor(props) {
     super(props);
     this.state = {
       productList: null,
-      choice: []
+      choice: [],
+      activeUser: true,
     };
   }
 
@@ -28,31 +30,40 @@ export class Main extends Component {
     let currentChoice = this.state.choice;
     currentChoice.push(name);
     this.setState({
-      choice: currentChoice
-    })
+      choice: currentChoice,
+    });
   };
 
   clear = () => {
     this.setState({
-      choice: []
-    })
-  }
+      choice: [],
+    });
+  };
 
   sort = () => {
     const currentValue = this.state.choice;
     currentValue.sort();
     this.setState({
-      choice: currentValue
-    })
-  }
+      choice: currentValue,
+    });
+  };
 
   render() {
     if (this.state.productList != null) {
       return (
         <div className="main with_products">
-          <Orders products={this.state.choice} funcClear={this.clear} funcSort={this.sort}/>
-          {this.state.productList.map((x, index)=> 
-          <Card key={`${index}`} products={x} actionClick={this.handleClick}/>)}
+          <Orders
+            products={this.state.choice}
+            funcClear={this.clear}
+            funcSort={this.sort}
+          />
+          {this.state.productList.map((x, index) => (
+            <Card
+              key={`${index}`}
+              products={x}
+              actionClick={this.handleClick}
+            />
+          ))}
         </div>
       );
     } else {
